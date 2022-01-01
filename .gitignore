@@ -1,0 +1,7 @@
+# Global gitignore
+.config/dotfiles
+.DS_Store
+.vscode
+TODO*
+.env
+*.swp
