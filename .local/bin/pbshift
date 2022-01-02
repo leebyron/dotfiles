@@ -1,0 +1,57 @@
+#!/bin/sh
+
+# Make sure the working directory exists
+PASTE_DIR="$TMPDIR"pbshift/
+mkdir -p "$PASTE_DIR"
+
+# Variables
+BOARD_COUNT=10
+MOVE_DIRECTION=1
+
+# Read command opts:
+#   -c <num>   the number of pasteboards to cycle through. Default: 10
+#   -n <num>   the pasteboard number to jump to. Defaults to moving +1/-1.
+#   -p         moves to the previous pasteboard instead of the next.
+while getopts 'c:n:p' opt
+do
+  case $opt in
+    c) BOARD_COUNT=${OPTARG};;
+    n) NEXT=${OPTARG};;
+    p) MOVE_DIRECTION=-1;;
+  esac
+done
+
+# Read current pasteboard number, otherwise default to 0.
+CURRENT_FILE="$PASTE_DIR"current
+CURRENT=$(cat "$CURRENT_FILE" 2>/dev/null)
+CURRENT=${CURRENT:-0}
+
+# Determine next pasteboard
+if [ -z ${NEXT} ]
+then let "NEXT=($CURRENT + $BOARD_COUNT + $MOVE_DIRECTION) % $BOARD_COUNT"
+fi
+
+# Make sure the working directory exists
+mkdir -p "$PASTE_DIR"
+
+# Update the current pasteboard if necessary
+pbpaste -Prefer rtf > "$PASTE_DIR"pb
+if ! [ -f "$PASTE_DIR$CURRENT" ] || ! cmp -s "$PASTE_DIR$CURRENT" "$PASTE_DIR"pb
+then mv "$PASTE_DIR"pb "$PASTE_DIR$CURRENT"
+else rm "$PASTE_DIR"pb
+fi
+
+# If the next pasteboard exists, move it into the working board, or clear
+if [ -f "$PASTE_DIR$NEXT" ]
+then pbcopy < "$PASTE_DIR$NEXT"
+else pbcopy < /dev/null
+fi
+
+# Update current file to next pasteboard number
+echo $NEXT > "$CURRENT_FILE"
+
+# Report!
+PBCONTENTS=$(pbpaste)
+PBCONTENTS=${PBCONTENTS:-"<empty>"}
+APPLESCRIPT="display notification \"$(printf "%s" "${PBCONTENTS//\"/\\\"}")\" with title \"PBShift\" subtitle \"Board $CURRENT → Board $NEXT\""
+osascript -e "$APPLESCRIPT"

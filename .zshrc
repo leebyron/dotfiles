@@ -1,3 +1,6 @@
+# XDG binaries
+export PATH="$HOME/.local/bin:$PATH"
+
 # Path extensions
 eval `/usr/libexec/path_helper -s`
 export PATH="/Users/leebyron/.cargo/bin:$PATH"
