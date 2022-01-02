@@ -104,4 +104,8 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" Control-i inserts one char
+nnoremap <C-i> i_<Esc>r
+
 :command JSONFormat %!node -p "JSON.stringify(JSON.parse(require('fs').readFileSync('%','utf8')),null,2)"
