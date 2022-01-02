@@ -2,7 +2,7 @@
     "GENERATEDBY": "/Users/leebyron/.nvm/versions/node/v17.3.0/bin/node /Users/leebyron/.local/karabiner/config.js",
     "global": {
         "check_for_updates_on_startup": true,
-        "show_in_menu_bar": true,
+        "show_in_menu_bar": false,
         "show_profile_name_in_menu_bar": false
     },
     "profiles": [
@@ -31,7 +31,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "right_control",
+                                        "key_code": "left_control",
                                         "lazy": true
                                     }
                                 ],
@@ -54,7 +54,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "left_control",
+                                        "key_code": "right_control",
                                         "lazy": true
                                     }
                                 ],
@@ -142,16 +142,17 @@
                             {
                                 "description": "next pasteboard",
                                 "from": {
-                                    "key_code": "right_command",
+                                    "key_code": "right_shift",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_command"
+                                            "left_shift"
                                         ]
                                     }
                                 },
-                                "to": [
+                                "to_if_alone": [
                                     {
-                                        "shell_command": "~/.local/bin/pbshift"
+                                        "shell_command": "~/.local/bin/pbshift",
+                                        "halt": true
                                     }
                                 ],
                                 "type": "basic"
@@ -159,16 +160,17 @@
                             {
                                 "description": "prev pasteboard",
                                 "from": {
-                                    "key_code": "left_command",
+                                    "key_code": "left_shift",
                                     "modifiers": {
                                         "mandatory": [
-                                            "right_command"
+                                            "right_shift"
                                         ]
                                     }
                                 },
-                                "to": [
+                                "to_if_alone": [
                                     {
-                                        "shell_command": "~/.local/bin/pbshift -p"
+                                        "shell_command": "~/.local/bin/pbshift -p",
+                                        "halt": true
                                     }
                                 ],
                                 "type": "basic"
@@ -176,7 +178,7 @@
                         ]
                     },
                     {
-                        "description": "Multitouch Vi Arrows",
+                        "description": "Finger Vim Arrows",
                         "manipulators": [
                             {
                                 "description": "finger h = left",

@@ -51,7 +51,7 @@ fi
 echo $NEXT > "$CURRENT_FILE"
 
 # Report!
-PBCONTENTS=$(pbpaste)
+PBCONTENTS=$(pbpaste | cut -c1-60)
 PBCONTENTS=${PBCONTENTS:-"<empty>"}
 APPLESCRIPT="display notification \"$(printf "%s" "${PBCONTENTS//\"/\\\"}")\" with title \"PBShift\" subtitle \"Board $CURRENT → Board $NEXT\""
 osascript -e "$APPLESCRIPT"

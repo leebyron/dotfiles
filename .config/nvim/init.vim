@@ -1,6 +1,5 @@
-"set runtimepath^=~/.vim runtimepath+=~/.vim/after
-"let &packpath=&runtimepath
-"source ~/.vim/vimrc
+" Consider running:
+" :autocmd BufWritePost <buffer> source $MYVIMRC
 
 set nocompatible
 syntax on
@@ -15,7 +14,8 @@ set ttyfast
 set autoread
 set number
 set clipboard=unnamed
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,trail:·
+set list
 set smartcase
 set showmatch
 set wrap
@@ -60,46 +60,52 @@ endif
 
 " Plugins will be downloaded under the specified directory.
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
-
-" Declare the list of plugins.
-" Plug 'tpope/vim-sensible'
-" Plug 'junegunn/seoul256.vim'
 Plug 'tanvirtin/monokai.nvim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-
-" List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
 let g:fzf_preview_window = ['right:50%', 'ctrl-/']
 
-" function! MyHighlights() abort
- " highlight Visual     cterm=NONE ctermbg=76  ctermfg=16  gui=NONE guibg=#5fd700 guifg=#000000
-  "highlight StatusLine gui=NONE guibg=#000000
- "  highlight Normal gui=NONE guibg=#000000
-  " highlight NonText gui=NONE guibg=#000000
-"endfunction
-
-"augroup MyColors
-  "autocmd!
-  "autocmd ColorScheme monokai call MyHighlights()
-"augroup END
+" monokai
 syntax on
 colorscheme monokai_black
 
 " move lines
 nnoremap <A-down> :m .+1<CR>==
-nnoremap <A-up> :m .-2<CR>==
+nnoremap ∆        :m .+1<CR>==
 inoremap <A-down> <Esc>:m .+1<CR>==gi
-inoremap <A-up> <Esc>:m .-2<CR>==gi
+inoremap ∆        <Esc>:m .+1<CR>==gi
 vnoremap <A-down> :m '>+1<CR>gv=gv
-vnoremap <A-up> :m '<-2<CR>gv=gv
+vnoremap ∆        :m '>+1<CR>gv=gv
+nnoremap <A-up>   :m .-2<CR>==
+nnoremap ˚        :m .-2<CR>==
+inoremap <A-up>   <Esc>:m .-2<CR>==gi
+inoremap ˚        <Esc>:m .-2<CR>==gi
+vnoremap <A-up>   :m '<-2<CR>gv=gv
+vnoremap ˚        :m '<-2<CR>gv=gv
+
+" indent/dedent
+nnoremap <A-left>  <lt><lt>
+nnoremap ˙         <lt><lt>
+inoremap <A-left>  <C-d>
+inoremap ˙         <C-d>
+vnoremap <A-left>  <gv
+vnoremap ˙         <gv
+nnoremap <A-right> >>
+nnoremap ¬         >>
+inoremap <A-right> <C-t>
+inoremap ¬         <C-t>
+vnoremap <A-right> >gv
+vnoremap ¬         >gv
 
 " esc terminal without messing up fzf
 au TermOpen * tnoremap <buffer> <leader><Esc> <c-\><c-n>
 " au FileType fzf tunmap <buffer> <Esc>
 
 nnoremap <leader>f :Files<CR>
+
+" command hjkl to move between windows
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>

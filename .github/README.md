@@ -20,7 +20,13 @@ nothing would be lost and rerun with `--force`.
 Afterwards, run the `dotfiles` command like you would `git`, for example:
 
 ```sh
-dotfiles add ~/.config/nvim/init.vim
+nvim ~/.config/nvim/init.vim
+dotfiles add -u
 dotfiles commit -m "Update nvim config"
 dotfiles push
 ```
+
+## Notable:
+
+* Karabiner bindings, generated with [a script](.local/karabiner).
+* A pretty [neat script](.local/bin/pbshift) to cycle through pasteboards.

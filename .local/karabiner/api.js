@@ -17,9 +17,7 @@ exports.manip = (description, props) => (
 
 exports.key = (key_code, props) => ({ key_code, ...props });
 
-exports.oneKey = (key_code, props) => [exports.key(key_code, props)];
-
-exports.fingerCount = (value) => [
+exports.fingers = (value) => [
   {
     name: "multitouch_extension_finger_count_total",
     type: "variable_if",
@@ -180,10 +178,10 @@ exports.karabiner = (...profiles) => (
     process.env.HOME + "/.config/karabiner/karabiner.json",
     JSON.stringify(
       {
-        GENERATEDBY: process.argv.join(' '),
+        GENERATEDBY: process.argv.join(" "),
         global: {
           check_for_updates_on_startup: true,
-          show_in_menu_bar: true,
+          show_in_menu_bar: false,
           show_profile_name_in_menu_bar: false,
         },
         profiles,
