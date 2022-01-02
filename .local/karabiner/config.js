@@ -1,5 +1,7 @@
 /**
  * Karabiner config source of truth
+ *
+ * Run: node ~/.local/karabiner/config.js
  */
 
 const {
@@ -44,6 +46,17 @@ karabiner(
       manip("control+close_bracket = open_paren", {
         from: key("close_bracket", { modifiers: { mandatory: ["control"] } }),
         to: oneKey("0", { modifiers: ["right_shift"] }),
+      })
+    ),
+    rule(
+      "Pasteboards",
+      manip("next pasteboard", {
+        from: key("right_command", { modifiers: { mandatory: ["left_command"] } }),
+        to: [{ shell_command: "~/.local/bin/pbshift" }],
+      }),
+      manip("prev pasteboard", {
+        from: key("left_command", { modifiers: { mandatory: ["right_command"] } }),
+        to: [{ shell_command: "~/.local/bin/pbshift -p" }],
       })
     ),
     rule(

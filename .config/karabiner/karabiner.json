@@ -137,6 +137,45 @@
                         ]
                     },
                     {
+                        "description": "Pasteboards",
+                        "manipulators": [
+                            {
+                                "description": "next pasteboard",
+                                "from": {
+                                    "key_code": "right_command",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "~/.local/bin/pbshift"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "prev pasteboard",
+                                "from": {
+                                    "key_code": "left_command",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_command"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "~/.local/bin/pbshift -p"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Multitouch Vi Arrows",
                         "manipulators": [
                             {
