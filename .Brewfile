@@ -16,6 +16,8 @@ brew "bison"
 brew "ca-certificates"
 # Cross-platform make
 brew "cmake"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # Distributed revision control system
