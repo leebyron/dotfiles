@@ -55,5 +55,7 @@ brew "osx-cross/avr/avr-gcc@9"
 brew "qmk/qmk/qmk"
 # Insane(ly slow but wicked good) PNG image optimization
 cask "crunch"
+# Keyboard customizer
+cask "karabiner-elements"
 # Toolbox companion for QMK Firmware
 cask "qmk-toolbox"
