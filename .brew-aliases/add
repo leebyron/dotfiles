@@ -1,0 +1,7 @@
+#! /bin/bash
+# alias: brew add
+#:  * `add` [args...]
+#:    `brew add` is an alias for `brew install && brew dump`
+brew install $*
+brew dump
+

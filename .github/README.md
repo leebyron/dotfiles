@@ -30,3 +30,8 @@ dotfiles push
 
 * Karabiner bindings, generated with [a script](.local/karabiner).
 * A pretty [neat script](.local/bin/pbshift) to cycle through pasteboards.
+* Synced Brew installation via some simple aliases.
+  * `brew add` instead of `brew install` to auto update the `~/.Brewfile`
+  * `brew remove` instead of `brew uninstall`
+  * `brew sync` to sync local state with Brewfile.
+  * *Requires running `brew alias` and `brew bundle` once per machine first*

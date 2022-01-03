@@ -1,0 +1,7 @@
+#! /bin/bash
+# alias: brew add
+#:  * `remove` [args...]
+#:    `brew remove` is an alias for `brew uninstall && brew dump`
+brew uninstall $*
+brew dump
+
