@@ -23,7 +23,7 @@ set wrap
 set textwidth=80
 set splitbelow
 set splitright
-set formatoptions=tcrqan1j
+set formatoptions=tcrqn1j
 set tabstop=2
 set shiftwidth=2
 set expandtab
