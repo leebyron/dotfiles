@@ -8,6 +8,8 @@ tap "homebrew/services"
 tap "osx-cross/arm"
 tap "osx-cross/avr"
 tap "qmk/qmk"
+# Print a list of paths as a tree of paths 🌳
+brew "as-tree"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Parser generator
@@ -24,6 +26,8 @@ brew "fzf"
 brew "git"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg", link: false
+# Command-line hex viewer
+brew "hexyl"
 # Add GitHub support to git on the command-line
 brew "hub"
 # Library for converting WMF (Window Metafile Format) files
@@ -36,6 +40,8 @@ brew "python@3.9"
 brew "openssl@3"
 # 7-Zip (high compression file archiver) implementation
 brew "p7zip"
+# Command-line tool to generate, analyze, convert and manipulate colors
+brew "pastel"
 # Pinentry for GPG on Mac
 brew "pinentry-mac"
 # Search tool like grep and The Silver Searcher

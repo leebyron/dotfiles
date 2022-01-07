@@ -1,9 +1,8 @@
-# XDG binaries
-export PATH="$HOME/.local/bin:$PATH"
-
 # Path extensions
 eval `/usr/libexec/path_helper -s`
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="/Users/leebyron/.cargo/bin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
 # End
 
 # Lines configured by zsh-newuser-install

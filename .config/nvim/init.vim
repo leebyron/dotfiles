@@ -14,24 +14,34 @@ set ttyfast
 set autoread
 set number
 set clipboard=unnamed
-set listchars=tab:▸\ ,trail:·
+set listchars=tab:▸⋯,trail:·
 set list
 set smartcase
+set smarttab
 set showmatch
 set wrap
 set textwidth=80
 set splitbelow
 set splitright
-set formatoptions=tcroqnl1j
+set formatoptions=tcrqan1j
 set tabstop=2
 set shiftwidth=2
 set expandtab
-let mapleader = " "
+set backspace=indent,start,eol
+set scrolloff=4
+set shell=zsh
+set cursorline
+set whichwrap=bs<>~[]
+let mapleader = ","
 
-map <leader><space> :let @/=''<cr>" clear search
+map <leader><leader> :let @/=''<cr>" clear search
 
 " fzf
 set rtp+=/usr/local/opt/fzf
+
+" spellcheck
+autocmd FileType markdown setlocal spell
+autocmd FileType gitcommit setlocal spell
 
 " resize splits
 augroup ReduceNoise
@@ -60,10 +70,26 @@ endif
 
 " Plugins will be downloaded under the specified directory.
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'tanvirtin/monokai.nvim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-surround'
+Plug 'andymass/vim-matchup'
 call plug#end()
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  -- One of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = "maintained",
+  highlight = {
+    enable = true,
+  },
+  matchup = {
+    enable = true,
+  },
+}
+EOF
 
 let g:fzf_preview_window = ['right:50%', 'ctrl-/']
 
@@ -115,3 +141,6 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <C-i> i_<Esc>r
 
 :command JSONFormat %!node -p "JSON.stringify(JSON.parse(require('fs').readFileSync('%','utf8')),null,2)"
+
+" open finder
+nnoremap <leader>o  :vs<bar>:E<CR>
