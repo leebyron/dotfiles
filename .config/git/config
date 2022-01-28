@@ -1,0 +1,35 @@
+[user]
+	name = Lee Byron
+	email = lee@leebyron.com
+	signingkey = 10A466450BDD6CE4
+[fetch]
+  prune = true
+[pull]
+  prune = true
+[alias]
+  sl = log --graph --simplify-by-decoration --pretty=format:'%D %C(dim)(%cr)' --all --not --tags
+  addremove = add --all
+  fixup = "!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
+
+  # Experimental...
+  oldest-ancestor = !zsh -c 'diff --old-line-format='' --new-line-format='' <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | head -1'
+  all-merge-bases = "!f() { eval $(git for-each-ref --shell --format='git merge-base master %(refname);' refs/heads) | sort | uniq; }; f"
+  common-merge-base = "!f() { git rev-list --no-walk $(git all-merge-bases) | tail -n1; }; f"
+  slpro = "!f() { git log --graph --simplify-by-decoration --pretty=format:'%D %C(dim)(%cr)' --all --not --tags $(git all-merge-bases); }; f"
+
+
+  # log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"  --no-merges \
+  #   !zsh -c 'git for-each-ref --shell --format="git merge-base master %(refname);" refs/heads'
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg
+[core]
+	excludesfile = ~/.gitignore
+[init]
+	defaultBranch = main
