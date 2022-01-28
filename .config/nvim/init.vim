@@ -70,6 +70,7 @@ endif
 
 " Plugins will be downloaded under the specified directory.
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
+Plug 'vim-airline/vim-airline'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'tanvirtin/monokai.nvim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
