@@ -19,6 +19,7 @@
   all-merge-bases = "!f() { eval $(git for-each-ref --shell --format='git merge-base master %(refname);' refs/heads) | sort | uniq; }; f"
   common-merge-base = "!f() { git rev-list --no-walk $(git all-merge-bases) | tail -n1; }; f"
   slpro = "!f() { git log --graph --simplify-by-decoration --pretty=format:'%D %C(dim)(%cr)' --all --not --tags $(git all-merge-bases); }; f"
+	last = log -1 HEAD
 
   # log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"  --no-merges \
   #   !zsh -c 'git for-each-ref --shell --format="git merge-base master %(refname);" refs/heads'
