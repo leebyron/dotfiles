@@ -17,6 +17,8 @@ git --git-dir=$HOME/.config/dotfiles/ --work-tree=$HOME checkout
 The last step may fail with a message about overwriting files, if so make sure
 nothing would be lost and rerun with `--force`.
 
+Add a file at `~/.config/git/user` with a `[user]` git config entry.
+
 Afterwards, run the `dot` command like you would `git`, for example:
 
 ```sh

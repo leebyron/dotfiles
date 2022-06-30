@@ -1,7 +1,5 @@
-[user]
-	name = Lee Byron
-	email = lee@leebyron.com
-	signingkey = 10A466450BDD6CE4
+[include]
+  path = user
 [fetch]
   prune = true
 [pull]
