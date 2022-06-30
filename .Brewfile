@@ -59,8 +59,18 @@ brew "osx-cross/avr/avr-gcc@8"
 brew "osx-cross/avr/avr-gcc@9"
 # Quantum Mechanical Keyboard (QMK) Firmware
 brew "qmk/qmk/qmk"
+# Password manager that keeps all passwords secure behind one password
+cask "1password"
+# Web browser focusing on privacy
+cask "brave-browser"
 # Insane(ly slow but wicked good) PNG image optimization
 cask "crunch"
+# Client for the Dropbox cloud storage service
+cask "dropbox"
+# Desktop client for GitHub repositories
+cask "github"
+# Web browser
+cask "google-chrome"
 # Tools to protect your emails and files
 cask "gpg-suite"
 # Keyboard customizer
@@ -69,3 +79,7 @@ cask "karabiner-elements"
 cask "meetingbar"
 # Toolbox companion for QMK Firmware
 cask "qmk-toolbox"
+# Open-source code editor
+cask "visual-studio-code"
+# Video communication and virtual meeting platform
+cask "zoom"
