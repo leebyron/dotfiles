@@ -30,6 +30,10 @@ autoload -U zmv
 alias mmv='noglob zmv -W'
 # End
 
+# fnv (nvm replacement)
+eval "$(fnm env --use-on-cd)"
+# End
+
 # Added by nvm installer
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

@@ -22,6 +22,8 @@ brew "python@3.9"
 brew "cmake"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
+# Fast and simple Node.js version manager
+brew "fnm"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # Distributed revision control system
