@@ -1,5 +1,7 @@
 # Path extensions
 eval `/usr/libexec/path_helper -s`
+export PATH="/opt/homebrew/bin:${PATH}"
+export PATH="/usr/local/bin:${PATH}"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/Users/leebyron/.cargo/bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
