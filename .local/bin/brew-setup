@@ -1,0 +1,10 @@
+# Setup aliases
+brew alias
+for f in ~/.brew-aliases/* ; do
+  ln -s $f "$(brew --prefix)/bin/brew-$(basename $f)"
+done
+
+# Setup bundle
+HOMEBREW_BREWFILE=~/.Brewfile
+brew bundle
+brew sync

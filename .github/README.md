@@ -9,21 +9,21 @@ To install:
 
 ```sh
 git clone git@github.com:leebyron/dotfiles.git --bare ~/.config/dotfiles
-dotfiles='/usr/bin/git --git-dir=$HOME/.config/dotfiles/ --work-tree=$HOME'
-dotfiles config --local status.showUntrackedFiles no
-dotfiles checkout
+git --git-dir=$HOME/.config/dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
+git --git-dir=$HOME/.config/dotfiles/ --work-tree=$HOME checkout 
+~/.local/bin/brew-setup
 ```
 
 The last step may fail with a message about overwriting files, if so make sure
 nothing would be lost and rerun with `--force`.
 
-Afterwards, run the `dotfiles` command like you would `git`, for example:
+Afterwards, run the `dot` command like you would `git`, for example:
 
 ```sh
 nvim ~/.config/nvim/init.vim
-dotfiles add -u
-dotfiles commit -m "Update nvim config"
-dotfiles push
+dot add -u
+dot commit -m "Update nvim config"
+dot push
 ```
 
 ## Notable:
@@ -34,4 +34,3 @@ dotfiles push
   * `brew add` instead of `brew install` to auto update the `~/.Brewfile`
   * `brew remove` instead of `brew uninstall`
   * `brew sync` to sync local state with Brewfile.
-  * *Requires running `brew alias` and `brew bundle` once per machine first*

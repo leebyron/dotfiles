@@ -55,7 +55,11 @@ alias gs='git addremove; git status'
 # End
 
 # Git dotfiles
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.config/dotfiles/ --work-tree=$HOME'
+alias dot='/usr/bin/git --git-dir=$HOME/.config/dotfiles/ --work-tree=$HOME'
+# End
+
+# Homebrew
+export HOMEBREW_BREWFILE=~/.Brewfile
 # End
 
 # Search history
