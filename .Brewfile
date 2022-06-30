@@ -16,6 +16,8 @@ brew "bat"
 brew "bison"
 # Mozilla CA certificate store
 brew "ca-certificates"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.9"
 # Cross-platform make
 brew "cmake"
 # Simple, fast and user-friendly alternative to find
@@ -34,8 +36,6 @@ brew "hub"
 brew "libwmf"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.9"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
 # 7-Zip (high compression file archiver) implementation
@@ -61,7 +61,11 @@ brew "osx-cross/avr/avr-gcc@9"
 brew "qmk/qmk/qmk"
 # Insane(ly slow but wicked good) PNG image optimization
 cask "crunch"
+# Tools to protect your emails and files
+cask "gpg-suite"
 # Keyboard customizer
 cask "karabiner-elements"
+# Shows the next meeting in the menu bar
+cask "meetingbar"
 # Toolbox companion for QMK Firmware
 cask "qmk-toolbox"
