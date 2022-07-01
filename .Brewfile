@@ -46,6 +46,8 @@ brew "p7zip"
 brew "pastel"
 # Pinentry for GPG on Mac
 brew "pinentry-mac"
+# Pretty, minimal and fast ZSH prompt
+brew "pure"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Powerful, clean, object-oriented scripting language

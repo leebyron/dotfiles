@@ -41,6 +41,7 @@ export NVM_DIR="$HOME/.nvm"
 # End
 
 # Installs "pure" prompt: https://github.com/sindresorhus/pure
+fpath+=("$(brew --prefix)/share/zsh/site-functions")
 autoload -U promptinit; promptinit
 prompt pure
 # End
