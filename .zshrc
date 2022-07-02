@@ -1,10 +1,9 @@
 # Path extensions
 eval `/usr/libexec/path_helper -s`
-export PATH="/opt/homebrew/bin:${PATH}"
-export PATH="/usr/local/bin:${PATH}"
+export PATH="$(brew --prefix)/bin:${PATH}"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/Users/leebyron/.cargo/bin:$PATH"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="$(brew --prefix)/opt/ruby/bin:$PATH"
 # End
 
 # Lines configured by zsh-newuser-install
@@ -81,7 +80,7 @@ export PATH="/usr/local/opt/bison/bin:$PATH"
 
 # Setting hub as the git wrapper
 eval "$(hub alias -s)"
-export PATH="/usr/local/opt/avr-gcc@8/bin:$PATH"
+export PATH="$(brew --prefix)/opt/avr-gcc@8/bin:$PATH"
 
 # added by fzf installer
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
