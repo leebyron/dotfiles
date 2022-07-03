@@ -33,12 +33,6 @@ alias mmv='noglob zmv -W'
 eval "$(fnm env --use-on-cd)"
 # End
 
-# Added by nvm installer
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# End
-
 # Installs "pure" prompt: https://github.com/sindresorhus/pure
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
 autoload -U promptinit; promptinit
