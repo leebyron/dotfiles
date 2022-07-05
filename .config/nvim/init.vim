@@ -82,7 +82,23 @@ call plug#end()
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  ensure_installed = "maintained",
+  ensure_installed = {
+    "bash",
+    "css",
+    "dockerfile",
+    "graphql",
+    "html",
+    "javascript", "json", "json5", "jsonc",
+    "latex",
+    "lua",
+    "markdown",
+    "rust",
+    "toml",
+    "tsx", "typescript",
+    "vim",
+    "wgsl",
+    "yaml",
+  },
   highlight = {
     enable = true,
   },
