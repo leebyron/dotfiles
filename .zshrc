@@ -1,9 +1,10 @@
 # Path extensions
 eval `/usr/libexec/path_helper -s`
 export PATH="$(brew --prefix)/bin:${PATH}"
+export PATH="$(brew --prefix ruby)/bin:$PATH"
+export PATH="$(brew --prefix postgresql@11)/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/Users/leebyron/.cargo/bin:$PATH"
-export PATH="$(brew --prefix)/opt/ruby/bin:$PATH"
 # End
 
 # Lines configured by zsh-newuser-install
@@ -64,6 +65,13 @@ bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 # End
 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv init --path)"
+#End
+
 # added by travis gem
 [ -f /Users/leebyron/.travis/travis.sh ] && source /Users/leebyron/.travis/travis.sh
 # End
@@ -72,6 +80,22 @@ export PATH="/usr/local/opt/bison/bin:$PATH"
 # Setting hub as the git wrapper
 eval "$(hub alias -s)"
 export PATH="$(brew --prefix)/opt/avr-gcc@8/bin:$PATH"
+#End
 
 # added by fzf installer
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#End
+
+# ghg script completions
+source "$HOME/Code/ghg/scripts/completions.sh"
+#End
+
+#gcloud
+source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+#End
+
+#Watershed user
+export WS_USER=lee
+export LINT_ON_COMMIT=true
+#End
