@@ -99,3 +99,5 @@ source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.
 export WS_USER=lee
 export LINT_ON_COMMIT=true
 #End
+
+export GPG_TTY=$(tty)
