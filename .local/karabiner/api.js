@@ -34,7 +34,7 @@ exports.profile = (name, ...rules) => ({
       "basic.to_if_held_down_threshold_milliseconds": 500,
       "mouse_motion_to_scroll.speed": 100,
     },
-    rules,
+    rules: rules.filter(rule => 'manipulators' in rule),
   },
   devices: [],
   fn_function_keys: [
@@ -164,7 +164,7 @@ exports.profile = (name, ...rules) => ({
     delay_milliseconds_before_open_device: 1000,
   },
   selected: false,
-  simple_modifications: [],
+  simple_modifications: rules.filter(rule => !('manipulators' in rule)),
   virtual_hid_keyboard: {
     country_code: 0,
     indicate_sticky_modifier_keys_state: true,
