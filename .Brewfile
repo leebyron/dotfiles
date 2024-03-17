@@ -10,6 +10,8 @@ tap "homebrew/services"
 tap "osx-cross/arm"
 tap "osx-cross/avr"
 tap "qmk/qmk"
+# Codec library for encoding and decoding AV1 video streams
+brew "aom"
 # Print a list of paths as a tree of paths
 brew "as-tree"
 # Collection of portable C++ source libraries
@@ -22,20 +24,24 @@ brew "bison"
 brew "ca-certificates"
 # Core application library for C
 brew "glib"
-# Cross-platform make
-brew "cmake"
 # Fast partial replacement for the codemod tool
 brew "fastmod"
+# Vector graphics library with cross-device output support
+brew "cairo"
+# Cross-platform make
+brew "cmake"
+# Open source suite of directory software
+brew "openldap"
+# Tool for downloading RTMP streaming media
+brew "rtmpdump"
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
 # Library to load and enumerate PKCS#11 modules
 brew "p11-kit"
 # Validating, recursive, caching DNS resolver
 brew "unbound"
-# GNU Transport Layer Security (TLS) Library
-brew "gnutls"
-# OpenType text shaping engine
-brew "harfbuzz"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
 # Fast and simple Node.js version manager
@@ -54,20 +60,34 @@ brew "git"
 brew "libgcrypt"
 # X.509 and CMS library
 brew "libksba"
-# GNU Pretty Good Privacy (PGP) package
-brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
+# Asynchronous event library
+brew "libevent"
+# Library to load and enumerate PKCS#11 modules
+brew "p11-kit"
+# GNU Transport Layer Security (TLS) Library
+brew "gnutls"
+# GNU Pretty Good Privacy (PGP) package
+brew "gnupg", link: false
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
+# GNU Ubiquitous Intelligent Language for Extensions
+brew "guile"
+# OpenType text shaping engine
+brew "harfbuzz"
 # Command-line hex viewer
 brew "hexyl"
 # Add GitHub support to git on the command-line
 brew "hub"
 # C library implementing the SSH2 protocol
 brew "libssh2"
+# Library for complex text layout
+brew "libraqm"
 # Library for converting WMF (Window Metafile Format) files
 brew "libwmf"
+# Next-gen compiler infrastructure
+brew "llvm"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Port scanning utility for large networks
@@ -78,6 +98,8 @@ brew "openssl@1.1"
 brew "tmux"
 # Process manager for Procfile-based applications and tmux
 brew "overmind"
+# Platform built on V8 to build network applications
+brew "node"
 # 7-Zip (high compression file archiver) implementation
 brew "p7zip"
 # Command-line tool to generate, analyze, convert and manipulate colors
@@ -120,7 +142,7 @@ brew "osx-cross/avr/avr-gcc@8"
 # GNU compiler collection for AVR 8-bit and 32-bit Microcontrollers
 brew "osx-cross/avr/avr-gcc@9"
 # Quantum Mechanical Keyboard (QMK) Firmware
-brew "qmk/qmk/qmk"
+brew "qmk/qmk/qmk", link: false
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Command-line interface for 1Password
