@@ -163,6 +163,8 @@ cask "google-chrome"
 cask "google-cloud-sdk"
 # Tools to protect your emails and files
 cask "gpg-suite"
+# Utility to hide menu bar items
+cask "hiddenbar"
 # Tool to optimise images to a smaller size
 cask "imageoptim"
 # Terminal emulator as alternative to Apple's Terminal app
