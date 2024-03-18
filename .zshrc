@@ -86,18 +86,19 @@ export PATH="$(brew --prefix)/opt/avr-gcc@8/bin:$PATH"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #End
 
-# ghg script completions
-source "$HOME/Code/ghg/scripts/completions.sh"
-#End
+# ghg specific setup
+if [ -f "$HOME/Code/ghg" ]; then
+  # ghg script completions
+  source "$HOME/Code/ghg/scripts/completions.sh"
 
-#gcloud
-source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-#End
+  #gcloud
+  source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+  source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 
-#Watershed user
-export WS_USER=lee
-export LINT_ON_COMMIT=true
+  #Watershed user
+  export WS_USER=lee
+  export LINT_ON_COMMIT=true
+fi
 #End
 
 export GPG_TTY=$(tty)
@@ -109,3 +110,13 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+
+echo "       🭊🭂🭛"
+echo "      🭋🭞🭚"
+echo "🭇🭆🭂██🭍🬹🬹🭂██🭍🬿"
+echo "🭅██████████🭟🭘"
+echo "███████████▌"
+echo "🭖██████████🭌🭑🬏"
+echo "🭤🭒██████████🭝🭙"
+echo " 🭢🭧🭓█🭞🬎🬎🭓█🭞🭜🭗"
