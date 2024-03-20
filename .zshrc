@@ -15,14 +15,31 @@ setopt appendhistory autocd beep extendedglob nomatch
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
+# brew installed functions
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
+# end
+
 # The following lines were added by compinstall
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle ':completion:*' file-sort access
 zstyle ':completion:*' squeeze-slashes true
 zstyle :compinstall filename '/Users/leebyron/.zshcompletion'
+# End of lines added by compinstall
+
+# Installs "pure" prompt: https://github.com/sindresorhus/pure
+fpath+=("$(brew --prefix)/share/zsh/site-functions")
+# End
+
+# zsh completion and prompt init
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
+autoload -U promptinit
+promptinit
+prompt pure
+# End
 
 # Suggested by http://www.mfasold.net/blog/2008/11/moving-or-renaming-multiple-files/
 # See also: http://zshwiki.org/home/builtin/functions/zmv
@@ -32,12 +49,6 @@ alias mmv='noglob zmv -W'
 
 # fnv (nvm replacement)
 eval "$(fnm env --use-on-cd)"
-# End
-
-# Installs "pure" prompt: https://github.com/sindresorhus/pure
-fpath+=("$(brew --prefix)/share/zsh/site-functions")
-autoload -U promptinit; promptinit
-prompt pure
 # End
 
 # Setup default editor
@@ -65,7 +76,7 @@ bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 # End
 
-# pyenv
+# pyenv (adds 250ms)
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
@@ -77,12 +88,12 @@ eval "$(pyenv init --path)"
 # End
 export PATH="/usr/local/opt/bison/bin:$PATH"
 
-# Setting hub as the git wrapper
+# Setting hub as the git wrapper (adds 30ms)
 eval "$(hub alias -s)"
 export PATH="$(brew --prefix)/opt/avr-gcc@8/bin:$PATH"
 #End
 
-# added by fzf installer
+# added by fzf installer (adds 50ms)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #End
 
