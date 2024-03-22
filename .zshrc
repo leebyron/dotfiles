@@ -34,6 +34,7 @@ fpath+=("$(brew --prefix)/share/zsh/site-functions")
 # End
 
 # zsh completion and prompt init
+PURE_PROMPT_SYMBOL="🯁🯂🯃"
 autoload -Uz compinit
 compinit
 autoload -U promptinit
