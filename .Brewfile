@@ -1,7 +1,9 @@
 tap "armmbed/formulae"
+tap "epk/epk"
 tap "homebrew/aliases"
 tap "homebrew/bundle"
 tap "homebrew/cask-drivers"
+tap "homebrew/cask-fonts"
 tap "homebrew/services"
 tap "osx-cross/arm"
 tap "osx-cross/avr"
@@ -19,11 +21,13 @@ brew "bat"
 # Parser generator
 brew "bison"
 # Core application library for C
-brew "glib"
+brew "glib", link: false
 # Vector graphics library with cross-device output support
 brew "cairo"
 # Cross-platform make
 brew "cmake"
+# Console Matrix
+brew "cmatrix"
 # Open source suite of directory software
 brew "openldap"
 # Tool for downloading RTMP streaming media
@@ -60,6 +64,8 @@ brew "harfbuzz"
 brew "hexyl"
 # Add GitHub support to git on the command-line
 brew "hub"
+# Simple terminal UI for git commands
+brew "lazygit"
 # Library for complex text layout
 brew "libraqm"
 # Library for converting WMF (Window Metafile Format) files
@@ -113,18 +119,27 @@ cask "1password"
 cask "brave-browser"
 # PNG image optimiser
 cask "crunch"
+# Variable font designed for display
+cask "font-inter"
+# Sans-serif, slab-serif, monospace and quasi‑proportional typeface family
+cask "font-iosevka"
+# Developer targeted fonts with a high number of glyphs
+cask "font-iosevka-nerd-font"
+# Superfamily of fonts for code
+cask "font-monaspace"
+cask "font-sf-mono-nerd-font"
+# Developer targeted fonts with a high number of glyphs
+cask "font-symbols-only-nerd-font"
 # Desktop client for GitHub repositories
 cask "github"
 # Tools to protect your emails and files
 cask "gpg-suite"
 # Utility to hide menu bar items
 cask "hiddenbar"
-# Tool to optimise images to a smaller size
-cask "imageoptim"
-# Terminal emulator as alternative to Apple's Terminal app
-cask "iterm2"
 # Keyboard customiser
 cask "karabiner-elements"
+# GPU-based terminal emulator
+cask "kitty"
 # Shows the next meeting in the menu bar
 cask "meetingbar"
 # Toolbox companion for QMK Firmware
