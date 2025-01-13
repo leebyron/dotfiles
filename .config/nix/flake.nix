@@ -112,19 +112,19 @@
       };
 
       # https://specifications.freedesktop.org/basedir-spec/latest/#variables
-      environment.variables = {
+      environment.variables = rec {
         XDG_CACHE_HOME  = "$HOME/Library/Caches";
         XDG_CONFIG_HOME = "$HOME/.config";
         XDG_DATA_HOME   = "$HOME/.local/share";
         XDG_STATE_HOME  = "$HOME/.local/state";
         XDG_RUNTIME_DIR = "/tmp/$USER";
         PATH = [ "$HOME/.local/bin" "$PATH" ];
-        # zsh xdg
-        ZDOTDIR = "$XDG_CONFIG_HOME/zsh";
-        # npm xdg
-        NPM_CONFIG_USERCONFIG = "$XDG_CONFIG_HOME/npm/config";
-        NPM_CONFIG_CACHE = "$XDG_CACHE_HOME/npm";
-        NPM_CONFIG_TMP = "$XDG_RUNTIME_DIR/npm";
+        # configure programs which do not yet follow XDG
+        ZDOTDIR = "${XDG_CONFIG_HOME}/zsh";
+        GNUPGHOME = "${XDG_CONFIG_HOME}/gnupg";
+        NPM_CONFIG_USERCONFIG = "${XDG_CONFIG_HOME}/npm/config";
+        NPM_CONFIG_CACHE = "${XDG_CACHE_HOME}/npm";
+        NPM_CONFIG_TMP = "${XDG_RUNTIME_DIR}/npm";
       };
 
       system.defaults = {
