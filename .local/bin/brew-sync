@@ -1,6 +1,5 @@
-#! /bin/bash
+#! /bin/sh
 # alias: brew sync
 #:  * `sync`
 #:    `brew sync` is an alias for `brew bundle install --cleanup`
 brew bundle install --global --no-lock --cleanup $*
-

@@ -1,10 +1,9 @@
-# Setup aliases
-brew alias
-for f in ~/.brew-aliases/* ; do
-  ln -s $f "$(brew --prefix)/bin/brew-$(basename $f)"
-done
-
+#! /bin/sh
+# alias: brew setup
 # Setup bundle
+#:  * `setup`
+#:    `brew setup` is an alias for `brew alias bundle sync`
 HOMEBREW_BREWFILE=~/.Brewfile
+brew alias
 brew bundle
 brew sync
