@@ -20,14 +20,14 @@ brew "libssh2"
 brew "bat"
 # Parser generator
 brew "bison"
-# Core application library for C
-brew "glib", link: false
 # Vector graphics library with cross-device output support
 brew "cairo"
 # Cross-platform make
 brew "cmake"
 # Console Matrix
 brew "cmatrix"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
 # Open source suite of directory software
 brew "openldap"
 # Tool for downloading RTMP streaming media
@@ -60,6 +60,8 @@ brew "gobject-introspection"
 brew "guile"
 # OpenType text shaping engine
 brew "harfbuzz"
+# Cross-platform program for developing Haskell projects
+brew "haskell-stack"
 # Command-line hex viewer
 brew "hexyl"
 # Add GitHub support to git on the command-line
@@ -70,10 +72,10 @@ brew "lazygit"
 brew "libraqm"
 # Library for converting WMF (Window Metafile Format) files
 brew "libwmf"
-# Next-gen compiler infrastructure
-brew "llvm"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# Port scanning utility for large networks
+brew "nmap"
 # Platform built on V8 to build network applications
 brew "node"
 # Cryptography and SSL/TLS Toolkit
@@ -82,8 +84,6 @@ brew "openssl@1.1"
 brew "p7zip"
 # Command-line tool to generate, analyze, convert and manipulate colors
 brew "pastel"
-# Tool Command Language
-brew "tcl-tk"
 # Friendly PIL fork (Python Imaging Library)
 brew "pillow"
 # Pinentry for GPG on Mac
@@ -102,6 +102,10 @@ brew "python@3.9"
 brew "ripgrep"
 # Powerful, clean, object-oriented scripting language
 brew "ruby"
+# Tool Command Language
+brew "tcl-tk"
+# Auto-hinter for TrueType fonts
+brew "ttfautohint"
 # JavaScript package manager
 brew "yarn"
 # UNIX shell (command interpreter)
@@ -119,16 +123,14 @@ cask "1password"
 cask "brave-browser"
 # PNG image optimiser
 cask "crunch"
-# Variable font designed for display
+cask "font-fira-code"
+cask "font-ibm-plex"
 cask "font-inter"
-# Sans-serif, slab-serif, monospace and quasi‑proportional typeface family
 cask "font-iosevka"
-# Developer targeted fonts with a high number of glyphs
 cask "font-iosevka-nerd-font"
-# Superfamily of fonts for code
 cask "font-monaspace"
 cask "font-sf-mono-nerd-font"
-# Developer targeted fonts with a high number of glyphs
+cask "font-source-code-pro"
 cask "font-symbols-only-nerd-font"
 # Desktop client for GitHub repositories
 cask "github"
@@ -138,6 +140,8 @@ cask "gpg-suite"
 cask "hiddenbar"
 # Keyboard customiser
 cask "karabiner-elements"
+# ZSA keyboard firmware flasher
+cask "keymapp"
 # GPU-based terminal emulator
 cask "kitty"
 # Shows the next meeting in the menu bar
@@ -150,6 +154,7 @@ cask "raycast"
 cask "visual-studio-code"
 # Video communication and virtual meeting platform
 cask "zoom"
+vscode "biomejs.biome"
 vscode "digitalbrainstem.javascript-ejs-support"
 vscode "earshinov.permute-lines"
 vscode "eddjrn.e-ink"
@@ -163,3 +168,4 @@ vscode "ow.vscode-subword-navigation"
 vscode "silvenon.mdx"
 vscode "sirtobi.pegjs-language"
 vscode "vsciot-vscode.vscode-arduino"
+vscode "vscodevim.vim"
