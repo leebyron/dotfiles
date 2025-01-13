@@ -18,6 +18,11 @@ echo -e '\033[38;5;203m🭖██████████🭌🭑🬏' # 4.4,1,1
 echo -e '\033[38;5;133m🭤🭒██████████🭝🭙' #3,1,3 --> 133
 echo -e '\033[38;5;75m 🭢🭧🭓█🭞🬎🬎🭓█🭞🭜🭗' #0.4,3,4.3 --> 38 (74, 75, 39)
 
+# Ghostty shell integration
+if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
+  source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
+fi
+
 # Path extensions
 eval `/usr/libexec/path_helper -s`
 export PATH="$(brew --prefix)/bin:${PATH}"

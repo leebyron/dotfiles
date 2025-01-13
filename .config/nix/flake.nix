@@ -72,6 +72,7 @@
         nixd  # Language server for nix
         pinentry_mac
         prettierd
+        pure-prompt
         qmk
         raycast
         ripgrep
@@ -103,8 +104,10 @@
         brews = [];
         casks = [
           "karabiner-elements"
-          "1password"  # TODO: move into nix when the flake is fixed
-          "ghostty"  # TODO: move into nix when the flake is fixed
+          # TODO: move these into nix when their flakes are fixed
+          "1password"
+          "ghostty"
+          "caffeine"
         ];
       };
 
@@ -145,7 +148,7 @@
         LaunchServices.LSQuarantine = false;  # Disable "This app was downloaded" dialogs
         loginwindow.GuestEnabled = false;
         screencapture = {
-          location = "$HOME/Screenshots";
+          location = "~/Screenshots";
           show-thumbnail = false;
           type = "png";
         };

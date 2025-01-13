@@ -1,4 +1,5 @@
 [include]
+  # Define [user] name, email, signingkey
   path = user
 [fetch]
   prune = true
@@ -30,8 +31,6 @@
 	gpgsign = true
 [gpg]
 	program = gpg
-[core]
-	excludesfile = ~/.gitignore
 [init]
 	defaultBranch = main
 [push]
