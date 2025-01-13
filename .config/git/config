@@ -1,10 +1,18 @@
 [include]
   # Define [user] name, email, signingkey
   path = user
+[core]
+  untrackedCache = true
+[init]
+  defaultBranch = main
 [fetch]
   prune = true
 [pull]
   prune = true
+[push]
+  autoSetupRemote = true
+  default = simple
+  followTags = true
 [alias]
   sl = log --graph --simplify-by-decoration --pretty=format:'%D %C(dim)(%cr)' --all --not --tags
   addremove = add --all
@@ -31,7 +39,3 @@
 	gpgsign = true
 [gpg]
 	program = gpg
-[init]
-	defaultBranch = main
-[push]
-	autoSetupRemote = true

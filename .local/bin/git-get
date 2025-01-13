@@ -1,0 +1,81 @@
+#!/usr/bin/env zsh -eu
+
+##############################################################################
+# git get <org/repo> [(--flat | --path target)]
+#
+# clones a github repo to the common repos root, avoiding name collisions,
+# then links to the top level. Prints the location of the repo to stdout
+##############################################################################
+
+usage() {
+  echo "Usage: git get <github-username/repository> [(--flat | --path target)]" >&2
+  echo "" >&2
+  echo "Clones a github repo to the common repos root, avoiding name collisions," >&2
+  echo "then links to the top level. Prints the location of the repo to stdout" >&2
+  exit 1
+}
+
+REPOS_ROOT=${REPOS_ROOT:-"$HOME/code"}
+REPO_PATH=""
+TARGET_DIR=""
+FLAT=false
+
+# Initialize variables
+for arg in "$@"; do
+  case $arg in
+    --flat)
+      FLAT=true
+      shift
+      ;;
+    --target)
+      shift
+      TARGET_DIR=$1
+      shift
+      ;;
+    -*)
+      usage
+      ;;
+    *)
+      if [ -n "$REPO_PATH" ]; then
+        usage
+      fi
+      REPO_PATH=$arg
+      ;;
+  esac
+done
+
+# Check if REPO_PATH is set
+if [ -z "$REPO_PATH" ] || ($FLAT && [ -n "$TARGET_DIR" ]); then
+  usage
+fi
+
+# Extract the username and repository from the argument
+GHORG=$(echo $REPO_PATH | cut -d'/' -f1)
+REPO=$(echo $REPO_PATH | cut -d'/' -f2)
+REPO_URL="git@github.com:$GHORG/$REPO.git"
+
+# Determine the target directory based on the flags
+if $FLAT; then
+  TARGET_DIR="$REPOS_ROOT/$REPO"
+else
+  TARGET_DIR="$REPOS_ROOT/${TARGET_DIR:-"$GHORG/$REPO"}"
+fi
+
+if [ ! -d "$TARGET_DIR" ]; then
+  # Create the target directory if it doesn't exist
+  mkdir -p "$TARGET_DIR" >&2
+
+  # Clone the repository
+  git clone --recurse-submodules $REPO_URL $TARGET_DIR >&2
+
+  # Print the target directory
+  echo $TARGET_DIR
+  exit 0
+elif [ -d $TARGET_DIR/.git ] && [ "$(git --git-dir=$TARGET_DIR/.git remote get-url origin)" = $REPO_URL ]; then
+  echo "Repo already checked out" >&2
+  echo $TARGET_DIR
+  exit 0
+else
+  echo "Target directory already exists: $TARGET_DIR" >&2
+  exit 1
+fi

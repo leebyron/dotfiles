@@ -24,19 +24,22 @@ if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
 fi
 
 # Path extensions
-eval `/usr/libexec/path_helper -s`
-export PATH="$(brew --prefix)/bin:${PATH}"
-export PATH="$(brew --prefix ruby)/bin:$PATH"
-export PATH="$(brew --prefix postgresql@11)/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="/Users/leebyron/.cargo/bin:$PATH"
+if [ -z "$NIX_PATH" ]; then
+  eval `/usr/libexec/path_helper -s`
+  export PATH="$(brew --prefix)/bin:${PATH}"
+  export PATH="$(brew --prefix ruby)/bin:$PATH"
+  export PATH="$(brew --prefix postgresql@11)/bin:$PATH"
+  export PATH="$HOME/.local/bin:$PATH"
+  export PATH="/Users/leebyron/.cargo/bin:$PATH"
+fi
 # End
 
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
+mkdir -p $XDG_STATE_HOME/zsh
+HISTFILE=$XDG_STATE_HOME/zsh/history
 HISTSIZE=1000
 SAVEHIST=1000
-setopt appendhistory autocd beep extendedglob nomatch
+setopt sharehistory autocd beep extendedglob nomatch hist_expire_dups_first
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
@@ -95,7 +98,7 @@ alias gs='git addremove; git status'
 
 # Git & Homebrew dotfiles
 export HOMEBREW_BREWFILE=~/.Brewfile
-alias dot='/usr/bin/git --git-dir=$HOME/.config/dotfiles/ --work-tree=$HOME'
+alias dot='git --git-dir=$HOME/.config/dotfiles/ --work-tree=$HOME'
 # End
 
 # Search history

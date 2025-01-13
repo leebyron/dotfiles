@@ -118,8 +118,7 @@
         XDG_DATA_HOME   = "$HOME/.local/share";
         XDG_STATE_HOME  = "$HOME/.local/state";
         XDG_RUNTIME_DIR = "/tmp/$USER";
-        XDG_BIN_DIR = "$HOME/.local/bin";
-        PATH = [ "$XDG_BIN_DIR" "$PATH" ];
+        PATH = [ "$HOME/.local/bin" "$PATH" ];
         # zsh xdg
         ZDOTDIR = "$XDG_CONFIG_HOME/zsh";
         # npm xdg
