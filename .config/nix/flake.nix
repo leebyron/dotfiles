@@ -30,7 +30,12 @@
   let
     configuration = { pkgs, ... }: {
       # Necessary for using flakes on this system.
-      nix.settings.experimental-features = "nix-command flakes";
+      nix.settings = {
+        experimental-features = "nix-command flakes";
+        use-xdg-base-directories = true;
+      };
+      # https://github.com/LnL7/nix-darwin/issues/943
+      environment.profiles = pkgs.lib.mkOrder 700 [ "\$HOME/.local/state/nix/profile" ];
 
       # Enable alternative shell support in nix-darwin.
       # programs.fish.enable = true;
@@ -52,18 +57,34 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs; [
         arc-browser
+        as-tree
+        bat
+        cmake
+        coreutils
+        curl
+        fd
+        fnm
+        fzf
+        gh
         git
         gnupg
         neovim
         nixd  # Language server for nix
         pinentry_mac
         prettierd
+        qmk
         raycast
+        ripgrep
+        ttfautohint
         zed-editor
+        zoom-us
+        zsh
       ];
 
       fonts.packages = with pkgs; [
         fira-code
+        inter
+        ibm-plex
         (fetchzip {
           url = "https://github.com/leebyron/lode/releases/download/v0.3/Lode-v0.3.zip";
           sha256 = "sha256-DcL3Y98vbM63MLdQoD20Jy4ekcJJKFQPNig10uQW3FY=";
@@ -87,6 +108,16 @@
         ];
       };
 
+      # https://specifications.freedesktop.org/basedir-spec/latest/#variables
+      environment.variables = {
+        XDG_CACHE_HOME  = "$HOME/Library/Caches";
+        XDG_CONFIG_HOME = "$HOME/.config";
+        XDG_DATA_HOME   = "$HOME/.local/share";
+        XDG_STATE_HOME  = "$HOME/.local/state";
+        PATH = [ "$HOME/.local/bin" "$PATH" ];
+        ZDOTDIR = "$XDG_CONFIG_HOME/zsh";
+      };
+
       system.defaults = {
         ActivityMonitor.ShowCategory = 101;  # All Hierarchally
         dock = {
@@ -102,7 +133,7 @@
         finder = {
           AppleShowAllExtensions = true;
           AppleShowAllFiles = true;
-          CreateDesktop = false;
+          CreateDesktop = false;  # https://leebyron.com/til/remove-mac-desktop/
           FXDefaultSearchScope = "SCcf";  # Search current folder
           FXEnableExtensionChangeWarning = false;
           FXPreferredViewStyle = "Nlsv";  # List view
@@ -143,6 +174,17 @@
           };
         };
       };
+
+      system.activationScripts.extraUserActivation.text = ''
+        # Create Screenshots directory if it doesn't exist
+        mkdir -p "$HOME/Screenshots"
+        # Set the desktop wallpaper
+        osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/System/Library/Desktop Pictures/Solid Colors/Black.png"'
+        # https://leebyron.com/til/remove-mac-desktop/
+        sudo rm -rf "$HOME/Desktop"
+        ln -s "$HOME" "$HOME/Desktop"
+        sudo chflags -h schg ~/Desktop
+      '';
 
     };
   in
