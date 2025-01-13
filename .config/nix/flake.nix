@@ -117,8 +117,15 @@
         XDG_CONFIG_HOME = "$HOME/.config";
         XDG_DATA_HOME   = "$HOME/.local/share";
         XDG_STATE_HOME  = "$HOME/.local/state";
-        PATH = [ "$HOME/.local/bin" "$PATH" ];
+        XDG_RUNTIME_DIR = "/tmp/$USER";
+        XDG_BIN_DIR = "$HOME/.local/bin";
+        PATH = [ "$XDG_BIN_DIR" "$PATH" ];
+        # zsh xdg
         ZDOTDIR = "$XDG_CONFIG_HOME/zsh";
+        # npm xdg
+        NPM_CONFIG_USERCONFIG = "$XDG_CONFIG_HOME/npm/config";
+        NPM_CONFIG_CACHE = "$XDG_CACHE_HOME/npm";
+        NPM_CONFIG_TMP = "$XDG_RUNTIME_DIR/npm";
       };
 
       system.defaults = {
@@ -178,15 +185,17 @@
         };
       };
 
-      system.activationScripts.extraUserActivation.text = ''
+      system.activationScripts.postUserActivation.text = ''
         # Create Screenshots directory if it doesn't exist
         mkdir -p "$HOME/Screenshots"
         # Set the desktop wallpaper
         osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/System/Library/Desktop Pictures/Solid Colors/Black.png"'
         # https://leebyron.com/til/remove-mac-desktop/
-        sudo rm -rf "$HOME/Desktop"
-        ln -s "$HOME" "$HOME/Desktop"
-        sudo chflags -h schg ~/Desktop
+        if [ ! -L "$HOME/Desktop" ]; then
+          sudo rm -rf "$HOME/Desktop"
+          ln -s "$HOME" "$HOME/Desktop"
+          sudo chflags -h schg ~/Desktop
+        fi
       '';
 
     };
