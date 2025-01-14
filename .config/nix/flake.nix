@@ -121,10 +121,13 @@
         PATH = [ "$HOME/.local/bin" "$PATH" ];
         # configure programs which do not yet follow XDG
         ZDOTDIR = "${XDG_CONFIG_HOME}/zsh";
+        HISTFILE = "${XDG_STATE_HOME}/zsh/history";
         GNUPGHOME = "${XDG_CONFIG_HOME}/gnupg";
+        LESSHISTFILE = "${XDG_STATE_HOME}/less/history";
         NPM_CONFIG_USERCONFIG = "${XDG_CONFIG_HOME}/npm/config";
         NPM_CONFIG_CACHE = "${XDG_CACHE_HOME}/npm";
         NPM_CONFIG_TMP = "${XDG_RUNTIME_DIR}/npm";
+        NODE_REPL_HISTORY = "${XDG_STATE_HOME}/node/repl_history";
       };
 
       system.defaults = {
@@ -185,8 +188,8 @@
       };
 
       system.activationScripts.postUserActivation.text = ''
-        # Create Screenshots directory if it doesn't exist
-        mkdir -p "$HOME/Screenshots"
+        # Create referenced directories if they don't exist
+        mkdir -p "$HOME/Screenshots" "$(dirname "$HISTFILE")" "$(dirname "$NODE_REPL_HISTORY")"
         # Set the desktop wallpaper
         osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/System/Library/Desktop Pictures/Solid Colors/Black.png"'
         # https://leebyron.com/til/remove-mac-desktop/

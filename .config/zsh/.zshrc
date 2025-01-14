@@ -35,7 +35,6 @@ fi
 # End
 
 # Lines configured by zsh-newuser-install
-mkdir -p $XDG_STATE_HOME/zsh
 HISTFILE=$XDG_STATE_HOME/zsh/history
 HISTSIZE=1000
 SAVEHIST=1000
