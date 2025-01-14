@@ -107,10 +107,12 @@ bindkey "^[[B" history-beginning-search-forward
 # End
 
 # pyenv (adds 250ms)
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv init --path)"
+if [ command -v pyenv >/dev/null 2>&1 ]; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+  eval "$(pyenv init --path)"
+fi
 #End
 
 # added by travis gem
@@ -119,8 +121,10 @@ eval "$(pyenv init --path)"
 export PATH="/usr/local/opt/bison/bin:$PATH"
 
 # Setting hub as the git wrapper (adds 30ms)
-eval "$(hub alias -s)"
-export PATH="$(brew --prefix)/opt/avr-gcc@8/bin:$PATH"
+if [ command -v hub >/dev/null 2>&1 ]; then
+  eval "$(hub alias -s)"
+  export PATH="$(brew --prefix)/opt/avr-gcc@8/bin:$PATH"
+fi
 #End
 
 # added by fzf installer (adds 50ms)
@@ -131,21 +135,6 @@ _fzf_compgen_path() {
 _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
-#End
-
-# ghg specific setup
-if [ -f "$HOME/Code/ghg" ]; then
-  # ghg script completions
-  source "$HOME/Code/ghg/scripts/completions.sh"
-
-  #gcloud
-  source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-  source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-
-  #Watershed user
-  export WS_USER=lee
-  export LINT_ON_COMMIT=true
-fi
 #End
 
 export GPG_TTY=$(tty)
