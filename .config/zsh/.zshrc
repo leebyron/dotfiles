@@ -18,6 +18,18 @@ echo -e '\033[38;5;203m🭖██████████🭌🭑🬏' # 4.4,1,1
 echo -e '\033[38;5;133m🭤🭒██████████🭝🭙' #3,1,3 --> 133
 echo -e '\033[38;5;75m 🭢🭧🭓█🭞🬎🬎🭓█🭞🭜🭗' #0.4,3,4.3 --> 38 (74, 75, 39)
 
+[ -d "$XDG_CACHE_HOME"/zsh ] || mkdir -p "$XDG_CACHE_HOME"/zsh
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
+# The following lines were added by compinstall
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle ':completion:*' file-sort access
+zstyle ':completion:*' squeeze-slashes true
+zstyle :compinstall filename "$XDG_CONFIG_HOME/zsh/.zshrc"
+# End of lines added by compinstall
+autoload -Uz compinit
+compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+
+
 # Ghostty shell integration
 if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
   source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
@@ -49,12 +61,6 @@ then
 fi
 # end
 
-# The following lines were added by compinstall
-zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
-zstyle ':completion:*' file-sort access
-zstyle ':completion:*' squeeze-slashes true
-zstyle :compinstall filename '/Users/leebyron/.zshcompletion'
-# End of lines added by compinstall
 
 # Installs "pure" prompt: https://github.com/sindresorhus/pure
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
@@ -62,8 +68,6 @@ fpath+=("$(brew --prefix)/share/zsh/site-functions")
 
 # zsh completion and prompt init
 PURE_PROMPT_SYMBOL="🯁🯂🯃"
-autoload -Uz compinit
-compinit
 autoload -U promptinit
 promptinit
 prompt pure
@@ -75,7 +79,7 @@ autoload -U zmv
 alias mmv='noglob zmv -W'
 # End
 
-# fnv (nvm replacement)
+# fnm (nvm replacement)
 eval "$(fnm env --use-on-cd)"
 # End
 
