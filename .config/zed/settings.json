@@ -1,0 +1,52 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "theme": "Andromeda",
+  "ui_font_family": "SF Pro",
+  "ui_font_size": 16,
+  "buffer_font_family": "Lode Dark",
+  "buffer_font_size": 16,
+  "buffer_line_height": {
+    "custom": 1.55
+  },
+  "tab_size": 2,
+  "format_on_save": "on",
+  "formatter": "language_server",
+  "vim_mode": true,
+  "vim": {
+    "use_system_clipboard": "always",
+    "use_multiline_find": true
+  },
+  "assistant": {
+    "version": "2",
+    "dock": "left",
+    "default_model": {
+      "provider": "openai",
+      "model": "gpt-4o"
+    }
+  },
+  "terminal": {
+    "dock": "right",
+    "font_size": 13,
+    "line_height": {
+      "custom": 1.25
+    },
+    "font_features": {
+      "calt": true
+    }
+  },
+  "languages": {
+    "Python": {
+      "tab_size": 4,
+      "language_servers": [
+        "pyright"
+      ]
+    }
+  }
+}
