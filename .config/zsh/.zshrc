@@ -1,22 +1,27 @@
-# printf '\33c\e[3J\033[38;2;97;189;69m' #2,4,1 -> 113
+# printf '\33c\e[3J\033[38;5;113m' #2,4,1 -> 113
 # echo -e '       🭊🭂🭛'
 # echo -e '      🭋🭞🭚'
 # echo -e '🭇🭆🭂██🭍🬹🬹🭂██🭍🬿'
-# echo -e '\033[38;2;254;186;35m🭅██████████🭟🭘' # 5,3.6,0.6 --> 221, (220, 215, 214)
-# echo -e '\033[38;2;245;131;26m███████████▌' # 5,2.5,0.5 --> 215, (209, 208, 214)
-# echo -e '\033[38;2;225;56;60m🭖██████████🭌🭑🬏' # 4.4,1,1 --> 185 (221)
-# echo -e '\033[38;2;151;59;153m🭤🭒██████████🭝🭙' #3,1,3 --> 133
-# echo -e '\033[38;2;21;159;222m 🭢🭧🭓█🭞🬎🬎🭓█🭞🭜🭗' #0.4,3,4.3 --> 38 (74, 75, 39)
+# echo -e '\033[38;5;221m🭅██████████🭟🭘' # 5,3.6,0.6 --> 221, (220, 215, 214)
+# echo -e '\033[38;5;215m███████████▌' # 5,2.5,0.5 --> 215, (209, 208, 214)
+# echo -e '\033[38;5;203m🭖██████████🭌🭑🬏' # 4.4,1,1 --> 185 (221)
+# echo -e '\033[38;5;133m🭤🭒██████████🭝🭙' #3,1,3 --> 133
+# echo -e '\033[38;5;75m 🭢🭧🭓█🭞🬎🬎🭓█🭞🭜🭗' #0.4,3,4.3 --> 38 (74, 75, 39)
 
-printf '\33c\e[3J\033[38;5;113m' #2,4,1 -> 113
-echo -e '       🭊🭂🭛'
-echo -e '      🭋🭞🭚'
-echo -e '🭇🭆🭂██🭍🬹🬹🭂██🭍🬿'
-echo -e '\033[38;5;221m🭅██████████🭟🭘' # 5,3.6,0.6 --> 221, (220, 215, 214)
-echo -e '\033[38;5;215m███████████▌' # 5,2.5,0.5 --> 215, (209, 208, 214)
-echo -e '\033[38;5;203m🭖██████████🭌🭑🬏' # 4.4,1,1 --> 185 (221)
-echo -e '\033[38;5;133m🭤🭒██████████🭝🭙' #3,1,3 --> 133
-echo -e '\033[38;5;75m 🭢🭧🭓█🭞🬎🬎🭓█🭞🭜🭗' #0.4,3,4.3 --> 38 (74, 75, 39)
+# Pure prompt init
+PURE_PROMPT_SYMBOL="🯁🯂🯃"
+autoload -U promptinit
+promptinit
+prompt pure
+
+# fzf init
+source <(fzf --zsh)
+
+# History config
+HISTSIZE=1000
+SAVEHIST=1000
+setopt sharehistory autocd beep extendedglob nomatch hist_expire_dups_first
+bindkey -e
 
 [ -d "$XDG_CACHE_HOME"/zsh ] || mkdir -p "$XDG_CACHE_HOME"/zsh
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
@@ -27,8 +32,8 @@ zstyle ':completion:*' squeeze-slashes true
 zstyle :compinstall filename "$XDG_CONFIG_HOME/zsh/.zshrc"
 # End of lines added by compinstall
 autoload -Uz compinit
-compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
-
+# Cache the initialization here. -C requires removing this file to clear cache
+compinit -C -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
 
 # Ghostty shell integration
 if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
@@ -43,34 +48,10 @@ if [ -z "$NIX_PATH" ]; then
   export PATH="$(brew --prefix postgresql@11)/bin:$PATH"
   export PATH="$HOME/.local/bin:$PATH"
   export PATH="/Users/leebyron/.cargo/bin:$PATH"
-fi
-# End
-
-# Lines configured by zsh-newuser-install
-HISTFILE=$XDG_STATE_HOME/zsh/history
-HISTSIZE=1000
-SAVEHIST=1000
-setopt sharehistory autocd beep extendedglob nomatch hist_expire_dups_first
-bindkey -e
-# End of lines configured by zsh-newuser-install
-
-# brew installed functions
-if type brew &>/dev/null
-then
+  # If this is a brew install of zsh
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  fpath+=("$(brew --prefix)/share/zsh/site-functions")
 fi
-# end
-
-
-# Installs "pure" prompt: https://github.com/sindresorhus/pure
-fpath+=("$(brew --prefix)/share/zsh/site-functions")
-# End
-
-# zsh completion and prompt init
-PURE_PROMPT_SYMBOL="🯁🯂🯃"
-autoload -U promptinit
-promptinit
-prompt pure
 # End
 
 # Suggested by http://www.mfasold.net/blog/2008/11/moving-or-renaming-multiple-files/
@@ -80,13 +61,12 @@ alias mmv='noglob zmv -W'
 # End
 
 # fnm (nvm replacement)
-eval "$(fnm env --use-on-cd)"
-# End
+if [ command -v fnm >/dev/null 2>&1 ]; then
+  eval "$(fnm env --use-on-cd)"
+fi
 
 # Setup default editor
-# export EDITOR=nvim
 export EDITOR=zed
-# End
 
 # Configure ls to use color and set up common aliases
 export CLICOLOR=1
@@ -131,13 +111,13 @@ fi
 #End
 
 # added by fzf installer (adds 50ms)
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-_fzf_compgen_path() {
-  fd --hidden --exclude .git . "$1"
-}
-_fzf_compgen_dir() {
-  fd --type=d --hidden --exclude .git . "$1"
-}
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# _fzf_compgen_path() {
+#   fd --hidden --exclude .git . "$1"
+# }
+# _fzf_compgen_dir() {
+#   fd --type=d --hidden --exclude .git . "$1"
+# }
 #End
 
 export GPG_TTY=$(tty)

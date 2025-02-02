@@ -1,3 +1,7 @@
 font-family = Lode Dark
 font-size = 16
 theme = Raycast_Dark
+quick-terminal-position = right
+macos-icon-frame = plastic
+
+keybind = global:cmd+escape=toggle_quick_terminal

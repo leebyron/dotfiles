@@ -29,13 +29,17 @@
   outputs = { self, nixpkgs, nix-darwin, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle }:
   let
     configuration = { pkgs, ... }: {
-      # Necessary for using flakes on this system.
-      nix.settings = {
-        experimental-features = "nix-command flakes";
-        use-xdg-base-directories = true;
-      };
+      # Use flakes instead of channels
+      nix.settings.experimental-features = "nix-command flakes";
+      nix.channel.enable = false;
+
+      # XDG
+      nix.settings.use-xdg-base-directories = true;
+      # environment.localBinInPath = true;  # Doesn't exist in darwin-nix
+      environment.variables.PATH = [ "$HOME/.local/bin" "$PATH" ];
+
       # https://github.com/LnL7/nix-darwin/issues/943
-      environment.profiles = pkgs.lib.mkOrder 700 [ "\$HOME/.local/state/nix/profile" ];
+      #environment.profiles = pkgs.lib.mkOrder 700 [ "\$HOME/.local/state/nix/profile" ];
 
       # Enable alternative shell support in nix-darwin.
       # programs.fish.enable = true;
@@ -103,31 +107,24 @@
         taps = [];
         brews = [];
         casks = [
+          # Reported to not play well when installed with nix
           "karabiner-elements"
           # TODO: move these into nix when their flakes are fixed
           "1password"
           "ghostty"
           "caffeine"
+          # closed source fonts not in nix pkg
+          "font-sf-mono"
+          "font-sf-pro"
+          "sf-symbols"
         ];
       };
 
-      # https://specifications.freedesktop.org/basedir-spec/latest/#variables
-      environment.variables = rec {
-        XDG_CACHE_HOME  = "$HOME/Library/Caches";
-        XDG_CONFIG_HOME = "$HOME/.config";
-        XDG_DATA_HOME   = "$HOME/.local/share";
-        XDG_STATE_HOME  = "$HOME/.local/state";
-        XDG_RUNTIME_DIR = "/tmp/$USER";
-        PATH = [ "$HOME/.local/bin" "$PATH" ];
-        # configure programs which do not yet follow XDG
-        ZDOTDIR = "${XDG_CONFIG_HOME}/zsh";
-        HISTFILE = "${XDG_STATE_HOME}/zsh/history";
-        GNUPGHOME = "${XDG_CONFIG_HOME}/gnupg";
-        LESSHISTFILE = "${XDG_STATE_HOME}/less/history";
-        NPM_CONFIG_USERCONFIG = "${XDG_CONFIG_HOME}/npm/config";
-        NPM_CONFIG_CACHE = "${XDG_CACHE_HOME}/npm";
-        NPM_CONFIG_TMP = "${XDG_RUNTIME_DIR}/npm";
-        NODE_REPL_HISTORY = "${XDG_STATE_HOME}/node/repl_history";
+      programs.zsh = {
+        enableFastSyntaxHighlighting = true;
+        enableFzfCompletion = true;
+        enableFzfGit = true;
+        enableFzfHistory = true;
       };
 
       system.defaults = {
@@ -168,6 +165,7 @@
           KeyRepeat = 1;
           NSWindowShouldDragOnGesture = true;
           PMPrintingExpandedStateForPrint = true;
+          NSTableViewDefaultSizeMode = 1;  # Small sidebar icons
           "com.apple.sound.beep.feedback" = 0;
         };
         WindowManager.EnableStandardClickToShowDesktop = false;
@@ -185,11 +183,21 @@
             CriticalUpdateInstall = 1;
           };
         };
+        CustomUserPreferences = {
+          "com.apple.LaunchServices" = {
+            LSHandlers = [{LSHandlerContentType = "public.plain-text"; LSHandlerRoleAll = "dev.zed.Zed";}];
+          };
+          NSGlobalDomain = {
+            AppleAccentColor = (-1);  # Graphite
+            AppleAquaColorVariant = 6;  # Graphite
+            AppleHighlightColor = "1.000000 0.749020 0.823529 Pink";
+          };
+        };
       };
 
       system.activationScripts.postUserActivation.text = ''
         # Create referenced directories if they don't exist
-        mkdir -p "$HOME/Screenshots" "$(dirname "$HISTFILE")" "$(dirname "$NODE_REPL_HISTORY")"
+        mkdir -p "$HOME/Screenshots"
         # Set the desktop wallpaper
         osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/System/Library/Desktop Pictures/Solid Colors/Black.png"'
         # https://leebyron.com/til/remove-mac-desktop/
@@ -198,6 +206,12 @@
           ln -s "$HOME" "$HOME/Desktop"
           sudo chflags -h schg ~/Desktop
         fi
+        # Set the default text editor to Zed
+        # defaults write com.apple.LaunchServices LSHandlers -array-add \
+        #   '{LSHandlerContentType = "public.plain-text"; LSHandlerRoleAll = "dev.zed.Zed";}'
+
+        # Following line should allow us to avoid a logout/login cycle
+        /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
       '';
 
     };
