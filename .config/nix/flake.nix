@@ -113,6 +113,7 @@
           "1password"
           "ghostty"
           "caffeine"
+          "maestral"
           # closed source fonts not in nix pkg
           "font-sf-mono"
           "font-sf-pro"
