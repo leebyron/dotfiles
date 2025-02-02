@@ -121,6 +121,8 @@
       };
 
       programs.zsh = {
+        enableGlobalCompInit = false;
+        enableBashCompletion = false;
         enableFastSyntaxHighlighting = true;
         enableFzfCompletion = true;
         enableFzfGit = true;

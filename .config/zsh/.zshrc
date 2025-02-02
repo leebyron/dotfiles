@@ -18,8 +18,9 @@ prompt pure
 source <(fzf --zsh)
 
 # History config
-HISTSIZE=1000
-SAVEHIST=1000
+SAVEHIST=2000
+HISTSIZE=2000
+HISTFILE="$XDG_STATE_HOME/zsh_history"
 setopt sharehistory autocd beep extendedglob nomatch hist_expire_dups_first
 bindkey -e
 
