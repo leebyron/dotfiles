@@ -189,6 +189,9 @@
           "com.apple.LaunchServices" = {
             LSHandlers = [{LSHandlerContentType = "public.plain-text"; LSHandlerRoleAll = "dev.zed.Zed";}];
           };
+          "com.apple.finder" = {
+            ShowRecentTags = false;
+          };
           NSGlobalDomain = {
             AppleAccentColor = (-1);  # Graphite
             AppleAquaColorVariant = 6;  # Graphite
