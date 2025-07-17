@@ -67,7 +67,7 @@ if [ command -v fnm >/dev/null 2>&1 ]; then
 fi
 
 # Setup default editor
-export EDITOR=zed
+export EDITOR=nvim
 
 # Configure ls to use color and set up common aliases
 export CLICOLOR=1
@@ -130,3 +130,8 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# fnm
+if command -v fnm >/dev/null 2>&1; then
+  eval "$(fnm env --use-on-cd --shell zsh)"
+fi

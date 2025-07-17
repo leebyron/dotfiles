@@ -66,6 +66,7 @@
         cmake
         coreutils
         curl
+        fastmod
         fd
         fnm
         fzf
@@ -75,6 +76,7 @@
         neovim
         nixd  # Language server for nix
         pinentry_mac
+        pnpm
         prettierd
         pure-prompt
         qmk
@@ -118,6 +120,8 @@
           "font-sf-mono"
           "font-sf-pro"
           "sf-symbols"
+          # unavailable in nix
+          "figma"
         ];
       };
 
@@ -165,7 +169,7 @@
           AppleInterfaceStyle = "Dark";
           ApplePressAndHoldEnabled = false;
           InitialKeyRepeat = 10;
-          KeyRepeat = 1;
+          KeyRepeat = 2;
           NSWindowShouldDragOnGesture = true;
           PMPrintingExpandedStateForPrint = true;
           NSTableViewDefaultSizeMode = 1;  # Small sidebar icons
